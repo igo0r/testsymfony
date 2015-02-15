@@ -1,0 +1,10 @@
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    prefix: /
+
+main:
+    resource: "@AppBundle/Resources/config/routing.yml"
+
+app:
+    resource: @AppBundle/Controller/
+    type:     annotation

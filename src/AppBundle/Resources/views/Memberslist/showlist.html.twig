@@ -1,0 +1,44 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body %}
+
+    {% if users is defined %}
+        <div class="main-container">
+            <table ng-controller="UsersListCtrl" ng-init="users={{ users }}" class="table users" data-toggle="table">
+                <tr>
+                    <td><a href="" ng-click="predicate = 'id'; reverse=!reverse">ID</a></td>
+                    <td><a href="" ng-click="predicate = 'username'; reverse=!reverse">Member name</a></td>
+                    <td><a href="" ng-click="predicate = 'email'; reverse=!reverse">Member email</a></td>
+                    <td><a href="" ng-click="predicate = 'roles'; reverse=!reverse">Role</a></td>
+                    <td>Action</td>
+                </tr>
+                <tr>
+                    <td at-implicit><input ng-model="search.id"></td>
+                    <td at-implicit><input ng-model="search.username"></td>
+                    <td at-implicit><input ng-model="search.email"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr ng-repeat="item in users | filter:search:strict | orderBy:predicate:reverse">
+                    <td data-field="id" data-halign="center">{[{ item.id }]}</td>
+                    <td data-field="username" data-halign="center">{[{ item.username }]}</td>
+                    <td data-field="email" data-halign="center">{[{ item.email }]}</td>
+                    <td data-field="roles" data-halign="center">{[{ item.roles }]}</td>
+                    <td>
+                        <a href="{{ path('user_edit') }}/{[{item.id}]}">
+                            <button type="button" class="btn btn-default btn-xs">Edit</button>
+                        </a>
+                        <a href="{{ path('user_delete') }}/{[{item.id}]}">
+                            <button type="button" class="btn btn-default btn-xs">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <a href=" {{ path('user_new' ) }}">
+                <button type="button" class="btn btn-primary btn-lg">Add</button>
+            </a>
+        {% else %}
+            <p>There are no members <a href="{{ path('register') }}">Please register a new member</a></p>
+        {% endif %}
+    </div>
+{% endblock %}

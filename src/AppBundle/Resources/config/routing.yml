@@ -1,0 +1,23 @@
+home_page:
+  pattern: /
+  defaults: {_controller: FOSUserBundle:Security:login}
+
+user_new:
+  pattern: /members/new
+  defaults: { _controller: AppBundle:Default:new }
+
+users_show:
+  pattern: /members
+  defaults: { _controller: AppBundle:Default:show }
+
+user_edit:
+  pattern: /members/edit/{id}
+  defaults: { _controller: AppBundle:Default:edit, id: 0 }
+  requirements:
+        id: \d+
+
+user_delete:
+  pattern: /members/delete/{id}
+  defaults: { _controller: AppBundle:Default:delete, id: 0 }
+  requirements:
+        id: \d+
