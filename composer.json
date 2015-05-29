@@ -24,7 +24,11 @@
         "mopa/bootstrap-bundle": "3.*@dev",
         "sunra/angularjs-symfony2-bundle": "dev-master",
         "doctrine/data-fixtures" : "dev-master",
-        "doctrine/doctrine-fixtures-bundle": "dev-master"
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "sonata-project/doctrine-orm-admin-bundle": "*",
+        "sonata-project/admin-bundle": "*",
+        "sonata-project/core-bundle": "*",
+        "sonata-project/jquery-bundle": "*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

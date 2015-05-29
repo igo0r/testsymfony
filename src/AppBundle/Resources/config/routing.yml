@@ -1,23 +1,35 @@
-home_page:
-  pattern: /
-  defaults: {_controller: FOSUserBundle:Security:login}
+#AppBundle_homepage:
+#    pattern:  /
+#    defaults: { _controller: AppBundle:ReadersAdmin:index }
+#
+#AppBundle_about:
+#    pattern:  /about
+#    defaults: { _controller: AppBundle:ReadersAdmin:about }
+#    requirements:
+#        _method:  GET
+#
+#AppBundle_readers:
+#    pattern:  /readers
+#    defaults: { _controller: AppBundle:ReadersAdmin:readers }
+#    requirements:
+#        _method:  GET|POST
+#
+#AppBundle_books:
+#    pattern:  /books
+#    defaults: { _controller: AppBundle:BooksAdmin:books }
+#    requirements:
+#        _method:  GET|POST
 
-user_new:
-  pattern: /members/new
-  defaults: { _controller: AppBundle:Default:new }
-
-users_show:
-  pattern: /members
-  defaults: { _controller: AppBundle:Default:show }
-
-user_edit:
-  pattern: /members/edit/{id}
-  defaults: { _controller: AppBundle:Default:edit, id: 0 }
-  requirements:
-        id: \d+
-
-user_delete:
-  pattern: /members/delete/{id}
-  defaults: { _controller: AppBundle:Default:delete, id: 0 }
-  requirements:
-        id: \d+
+#AppBundle_books_show:
+#    pattern:  /{id}
+#    defaults: { _controller: AppBundle:Books:show }
+#    requirements:
+#        _method:  GET
+#        id: \d+
+#
+#AppBundle_readers_show:
+#    pattern:  /{id}
+#    defaults: { _controller: AppBundle:Books:show }
+#    requirements:
+#        _method:  GET
+#        id: \d+

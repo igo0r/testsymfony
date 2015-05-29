@@ -7,3 +7,15 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    library.admin.books:
+        class: AppBundle\Admin\BooksAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Library, label: Books }
+        arguments: [null, AppBundle\Entity\Books, AppBundle:BooksAdmin]
+
+    library.admin.readers:
+        class: AppBundle\Admin\ReadersAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Library, label: Readers }
+        arguments: [null, AppBundle\Entity\Readers, AppBundle:ReadersAdmin]
