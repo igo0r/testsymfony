@@ -3,6 +3,7 @@
 
 namespace AppBundle\Controller;
 
+use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Readers;
@@ -16,19 +17,19 @@ class ReadersController extends Controller
      * Creates a new Blog entity.
      *
      */
-    public function createAction(Request $request)
-    {
-        $entity = new Readers();
-        $form = $this->createForm(new ReadersForm(), $entity);
-        $form->bind($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $em->persist($entity);
-            $em->flush();
-        }
-    }
+//    public function createAction(Request $request)
+//    {
+//        $entity = new Readers();
+//        $form = $this->createForm(new ReadersForm(), $entity);
+//        $form->bind($request);
+//
+//        if ($form->isValid()) {
+//            $em = $this->getDoctrine()->getManager();
+//
+//            $em->persist($entity);
+//            $em->flush();
+//        }
+//    }
 
 //    /**
 //     * Show a book entry

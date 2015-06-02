@@ -38,7 +38,6 @@ class Readers
 
     private $books;
 
-
     public function __construct()
     {
         $this->book = new ArrayCollection();
@@ -119,36 +118,4 @@ class Readers
     {
         return $this->name;
     }
-
-//    /**
-//     * Get book
-//     *
-//     * @return string
-//     */
-//    public function getBook()
-//    {
-//        return $this->book;
-//        //return $this->book;
-//    }
-//
-//    /**
-//     * Set book
-//     *
-//     * @param string $book
-//     * @return object
-//     */
-//    public function setBook($book)
-//    {
-////        if (!$this->book->contains($book)) {
-////            //print_r($book);die;
-////            $this->book->add($book);
-////        }
-//
-//        //$this->book[] = $book;
-//        $this->book->add($book);
-//        //$this->book = $book;
-//
-//
-//        return $this;
-//    }
 }

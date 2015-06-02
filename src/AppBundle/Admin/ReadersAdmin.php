@@ -67,7 +67,7 @@ class ReadersAdmin extends Admin
     {
         $showMapper
             ->add('name')
-            ->add('book')
+            ->add('books')
         ;
     }
 
@@ -80,7 +80,7 @@ class ReadersAdmin extends Admin
     {
         $listMapper
             ->add('name')
-            ->add('book')
+            ->add('books')
             ->add('_action', 'input', array(
                 'actions' => array(
                     'show' => array(),
@@ -100,7 +100,6 @@ class ReadersAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
-            ->add('book')
         ;
     }
 

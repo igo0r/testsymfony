@@ -104,27 +104,4 @@ class Books
     {
         return $this->author;
     }
-
-//    /**
-//     * Set reader
-//     *
-//     * @param string $reader
-//     * @return Books
-//     */
-//    public function setReaders($readers)
-//    {
-//        $this->readers = $readers;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get reader
-//     *
-//     * @return string
-//     */
-//    public function getReaders()
-//    {
-//        return $this->$readers;
-//    }
 }
