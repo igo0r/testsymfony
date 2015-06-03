@@ -1,0 +1,10 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field%}
+    {% set readersBooks = field_description.options.extra_data.readersBooks %}
+    {% if readersBooks[object.id] is defined %}
+        {% for book in  readersBooks[object.id]%}
+            <p>{{ book }}</p>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

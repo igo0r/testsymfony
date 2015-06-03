@@ -4,11 +4,12 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Entity\Repositories\ReadersRepository;
 use AppBundle\Entity\ReadersRelations;
 /**
  * Readers
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\Repositories\ReadersRepository")
  * @ORM\Table(name="Readers")
  */
 class Readers

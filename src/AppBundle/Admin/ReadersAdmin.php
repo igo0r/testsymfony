@@ -15,12 +15,14 @@
 
 namespace AppBundle\Admin;
 
+use Doctrine\ORM\EntityManager;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\DoctrineORMAdminBundle\Model\ModelManager;
 
 /**
  * Default Controller Class
@@ -47,7 +49,8 @@ class ReadersAdmin extends Admin
     {
         $formMapper
             ->add('name')
-            ->add('book',
+            ->add(
+                'book',
                 'entity',
                 array(
                     'class'    => 'AppBundle:Books',
@@ -67,8 +70,7 @@ class ReadersAdmin extends Admin
     {
         $showMapper
             ->add('name')
-            ->add('books')
-        ;
+            ->add('books');
     }
 
     /**
@@ -78,17 +80,43 @@ class ReadersAdmin extends Admin
      */
     protected function configureListFields(ListMapper $listMapper)
     {
+        /** @var $readersRepository \AppBundle\Entity\Repositories\ReadersRepository */
+        $readersRepository = $this->getEntityManager()->getRepository('AppBundle:Readers');
+
+        $readersBooksRelation = $readersRepository->getBooksByReaders();
+
         $listMapper
             ->add('name')
-            ->add('books')
-            ->add('_action', 'input', array(
-                'actions' => array(
-                    'show' => array(),
-                    'edit' => array(),
-                    'delete' => array(),
+            ->add(
+                'books',
+                'string',
+                array(
+                    'template'   => 'AppBundle:CRUD:list_books.html.twig',
+                    'extra_data' => array('readersBooks' => $readersBooksRelation)
                 )
-            ))
-        ;
+            )
+            ->add(
+                '_action',
+                'input',
+                array(
+                    'actions' => array(
+                        'show'   => array(),
+                        'edit'   => array(),
+                        'delete' => array(),
+                    )
+                )
+            );
+    }
+
+    /**
+     * @return EntityManager
+     */
+    public function getEntityManager()
+    {
+        /** @var $modelManager ModelManager */
+        $modelManager = $this->getModelManager();
+
+        return $modelManager->getEntityManager($this->getClass());
     }
 
     /**
@@ -99,13 +127,12 @@ class ReadersAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-        ;
+            ->add('name');
     }
 
     // setup the default sort column and order
     protected $datagridValues = array(
         '_sort_order' => 'ASC',
-        '_sort_by' => 'name'
+        '_sort_by'    => 'name'
     );
 }
