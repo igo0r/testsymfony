@@ -50,14 +50,9 @@ class ReadersAdmin extends Admin
         $formMapper
             ->add('name')
             ->add(
-                'book',
+                'readersRelations',
                 'entity',
-                array(
-                    'class'    => 'AppBundle:Books',
-                    'property' => 'name',
-                    'multiple' => true,
-                    'expanded' => true
-                )
+                array('class' => 'AppBundle:Books', 'expanded' => true, 'multiple' => true, 'by_reference' => false)
             );
     }
 
@@ -66,11 +61,14 @@ class ReadersAdmin extends Admin
      *
      * @return void
      */
-    protected function configureShowField(ShowMapper $showMapper)
+    protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
             ->add('name')
-            ->add('books');
+            ->add(
+                'readersRelations',
+                'entity', array('class' => 'AppBundle:Books', 'expanded' => true, 'multiple' => true, 'by_reference' => false)
+            );
     }
 
     /**
@@ -80,20 +78,11 @@ class ReadersAdmin extends Admin
      */
     protected function configureListFields(ListMapper $listMapper)
     {
-        /** @var $readersRepository \AppBundle\Entity\Repositories\ReadersRepository */
-        $readersRepository = $this->getEntityManager()->getRepository('AppBundle:Readers');
-
-        $readersBooksRelation = $readersRepository->getBooksByReaders();
-
         $listMapper
             ->add('name')
             ->add(
-                'books',
-                'string',
-                array(
-                    'template'   => 'AppBundle:CRUD:list_books.html.twig',
-                    'extra_data' => array('readersBooks' => $readersBooksRelation)
-                )
+                'readersRelations',
+                'entity', array('class' => 'AppBundle:Books')
             )
             ->add(
                 '_action',
@@ -106,6 +95,12 @@ class ReadersAdmin extends Admin
                     )
                 )
             );
+    }
+
+    public function preUpdate($object)
+    {
+        //TODO: add check for existing fields
+
     }
 
     /**

@@ -40,9 +40,9 @@ class Books
     /**
      * @var ReadersRelations
      *
-     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\ReadersRelations" , mappedBy="Books" , cascade={"all"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ReadersRelations" , mappedBy="book" , cascade={"all"})
      */
-    private $readers;
+    private $readersRelations;
 
     public function __toString()
     {
@@ -103,5 +103,21 @@ class Books
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * @return ReadersRelations
+     */
+    public function getReadersRelations()
+    {
+        return $this->readersRelations;
+    }
+
+    /**
+     * @param ReadersRelations $readersRelations
+     */
+    public function setReadersRelations($readersRelations)
+    {
+        $this->readersRelations = $readersRelations;
     }
 }

@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * ReadersRelations
  *
@@ -24,7 +25,7 @@ class ReadersRelations
     /**
      * @var Books
      *
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Books", inversedBy="ReadersRelations")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Books", inversedBy="ReadersRelations")
      * @ORM\JoinColumn(name="book_id", referencedColumnName="id")
      */
     private $book;
@@ -32,7 +33,7 @@ class ReadersRelations
     /**
      * @var Readers
      *
-     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Readers", inversedBy="ReadersRelations")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Readers", inversedBy="ReadersRelations")
      * @ORM\JoinColumn(name="reader_id", referencedColumnName="id")
      */
     private $reader;

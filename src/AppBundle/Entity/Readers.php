@@ -19,7 +19,7 @@ class Readers
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")     *
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -33,53 +33,20 @@ class Readers
     /**
      * @var ReadersRelations
      *
-     * @ORM\OneToMany(targetEntity="\AppBundle\Entity\ReadersRelations" , mappedBy="Readers" , cascade={"all"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ReadersRelations" , mappedBy="reader" , cascade={"all"})
      */
-    private $book;
+    private $readersRelations;
 
     private $books;
-
-    public function __construct()
-    {
-        $this->book = new ArrayCollection();
-        $this->books = new ArrayCollection();
-
-    }
 
     public function __toString()
     {
         return $this->name;
     }
 
-    public function getBook()
-    {
-        $books = new ArrayCollection();
-
-        foreach($books as $p)
-        {
-            $books[] = $p->getBook();
-        }
-
-        return $books;
-    }
-
-    public function setBook($books)
-    {
-        foreach($books as $p)
-        {
-            $po = new ReadersRelations();
-
-            $po->setBook($p);
-            $po->setReader($this);
-
-            $this->addPo($po);
-        }
-
-    }
-
     public function addPo($ProductOrder)
     {
-        $this->book[] = $ProductOrder;
+        $this->readersRelations[] = $ProductOrder;
     }
 
     public function removePo($ProductOrder)
@@ -118,5 +85,37 @@ class Readers
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return ReadersRelations
+     */
+    public function getReadersRelations()
+    {
+        $books = [];
+
+        if(count($this->readersRelations)) {
+            foreach ($this->readersRelations as $p) {
+                $books[] = $p->getBook();
+            }
+        }
+
+        return $books;
+    }
+
+    /**
+     * @param ReadersRelations $readersRelations
+     */
+    public function setReadersRelations($readersRelations)
+    {
+        foreach($readersRelations as $p)
+        {
+            $po = new ReadersRelations();
+
+            $po->setBook($p);
+            $po->setReader($this);
+
+            $this->addPo($po);
+        }
     }
 }
